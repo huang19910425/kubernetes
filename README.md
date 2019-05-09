@@ -12,6 +12,7 @@
 | Kubernetes集群搭建之Node配置篇 | 06-kubernetes-node.md |
 | Kubernetes系列之Coredns and Dashboard介绍篇 | 07-kubernetes-coredns-dashboard.md |
 | Kubernetes系列之监控Metres-server实战篇 | 08-kubernetes-metres-server.md |
+| Kubernetes系列之wayne | 09-kubernetes-wayne.md |
 
 ## config目录存放服务的配置文件
 

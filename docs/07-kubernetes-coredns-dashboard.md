@@ -127,8 +127,6 @@ k8s-app: kubernetes-dashboard
 ### 生产自定义证书
 
 ```
-[root@master01 dashboard]# openssl req -nodes -newkey rsa:2048 -keyout dashboard.key -out dashboard.csr -subj "/C=/ST=/L=/O=/OU=/CN=kubernetes-dashboard
-> ^C
 [root@master01 dashboard]# openssl req -nodes -newkey rsa:2048 -keyout dashboard.key -out dashboard.csr -subj "/C=/ST=/L=/O=/OU=/CN=kubernetes-dashboard"
 Generating a 2048 bit RSA private key
 ...........+++

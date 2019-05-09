@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: dev-api-mysql
+  namespace: dev-api
+  labels:
+    app: dev-api-mysql
+spec:
+  template:
+    metadata:
+      labels:
+        app: dev-api-mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+          name: dbport
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: 0-p0-p0-p
+        - name: MYSQL_DATABASE
+          value: db_yshu
+        - name: MYSQL_USER
+          value: devuser
+        - name: MYSQL_PASSWORD
+          value: devuser@ys
+        volumeMounts:
+        - name: db
+          mountPath: /var/lib/mysql
+          subPath: dev-api-mysql
+      volumes:
+      - name: db
+        persistentVolumeClaim:
+          claimName: dev-api-mysql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-api-mysql
+  namespace: dev-api
+spec:
+  type: NodePort
+  selector:
+    app: dev-api-mysql
+  ports:
+  - name: dev-api-mysql-port
+    protocol: TCP
+    port: 3306
+    targetPort: dbport

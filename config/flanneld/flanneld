@@ -1,0 +1,1 @@
+FLANNEL_OPTIONS="--etcd-endpoints=https://192.168.1.163:2379,https://192.168.1.162:2379,https://192.168.1.163:2379 -etcd-cafile=/etc/etcd/ssl/ca.pem -etcd-certfile=/etc/etcd/ssl/server.pem -etcd-keyfile=/etc/etcd/ssl/server-key.pem -etcd-prefix=/coreos.com/network"

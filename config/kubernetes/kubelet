@@ -1,0 +1,8 @@
+KUBELET_OPTS="--logtostderr=true \
+--v=4 \
+--hostname-override=192.168.1.161 \
+--kubeconfig=/etc/kubernetes/kubelet.kubeconfig \
+--bootstrap-kubeconfig=/etc/kubernetes/bootstrap.kubeconfig \
+--config=/etc/kubernetes/kubelet.config \
+--cert-dir=/etc/kubernetes/ssl \
+--pod-infra-container-image=harbor.kattall.com/library/pod-infrastructure:latest"

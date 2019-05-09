@@ -1,0 +1,47 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dev-api-java
+  namespace: dev-api
+spec: 
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: dev-api-java
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: dev-api-java
+        image: harbor.kattall.com/mytest/api:api_v_2_1_7
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: JAVA_OPTS
+          value: -Dspring.profiles.active=k8s-dev -Dserver.port=8080 -Dserver.context-path=/api_v_2_1_7 -Xms256M -Xmx256M -Xmn128M -XX:MetaspaceSize=128M -XX:MaxMetaspaceSize=128M
+        ports:
+        - name: web
+          containerPort: 8080
+          protocol: TCP
+          # hostPort: 80
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+          requests:
+            cpu: 1000m
+            memory: 1024Mi
+        livenessProbe:
+          httpGet:
+            path: /api_v_2_1_7/swagger-ui.html#/
+            port: 8080
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+          failureThreshold: 12
+        readinessProbe:
+          httpGet:
+            path: /api_v_2_1_7/swagger-ui.html#/
+            port: 8080
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+          failureThreshold: 12

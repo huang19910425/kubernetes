@@ -1,0 +1,45 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: wayne-mysql
+  namespace: kube-system
+  labels:
+    app: wayne-mysql
+spec:
+  template:
+    metadata:
+      labels:
+        app: wayne-mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7.14
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3306
+          name: dbport
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: huangxiang
+        volumeMounts:
+        - name: db
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: db
+        persistentVolumeClaim:
+          claimName: wayne-mysql-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wayne-mysql
+  namespace: kube-system
+spec:
+  selector:
+    app: wayne-mysql
+  ports:
+  - name: mysqlport
+    protocol: TCP
+    port: 3306
+    targetPort: dbport

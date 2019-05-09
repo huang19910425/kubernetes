@@ -161,7 +161,6 @@ docker.service
 [root@master01 ~]# scp /etc/docker/daemon.json root@node01:/etc/docker/   
 [root@master01 ~]# scp /etc/docker/daemon.json root@node02:/etc/docker/  
 [root@master01 ~]# scp /etc/docker/daemon.json root@harbor:/etc/docker/
-daemon.json 
 
 # 重启docker
 [root@master01 ~]# systemctl daemon-reload && systemctl restart docker

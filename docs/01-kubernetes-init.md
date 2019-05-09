@@ -149,7 +149,6 @@ tmpfs                    781M     0  781M   0% /run/user/0
 [root@master01 ~]# scp /usr/lib/systemd/system/docker.service root@node01:/usr/lib/systemd/system/   
 [root@master01 ~]# scp /usr/lib/systemd/system/docker.service root@node02:/usr/lib/systemd/system/   
 [root@master01 ~]# scp /usr/lib/systemd/system/docker.service root@harbor:/usr/lib/systemd/system/
-docker.service 
 
 # 设置docker仓库地址
 [root@master01 ~]# vim /etc/docker/daemon.json

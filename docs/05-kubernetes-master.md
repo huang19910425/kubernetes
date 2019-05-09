@@ -338,12 +338,14 @@ tcp        0      0 127.0.0.1:8080          0.0.0.0:*               LISTEN      
 ### 部署kube-scheduler组件
 
 1. 创建kube-scheduler配置文件
+
 ```
 [root@master01 kubernetes]# more /etc/kubernetes/kube-scheduler 
 KUBE_SCHEDULER_OPTS="--logtostderr=true --v=4 --master=127.0.0.1:8080 --leader-elect"
 ```
 
 2. 创建kube-scheduler启动文件
+
 ```
 [root@master01 kubernetes]# more /usr/lib/systemd/system/kube-scheduler.service
 [Unit]
@@ -360,6 +362,7 @@ WantedBy=multi-user.target
 ```
 
 3. 启动服务
+
 ```
 [root@master01 kubernetes]# systemctl daemon-reload
 [root@master01 kubernetes]# systemctl enable kube-scheduler.service 
@@ -394,7 +397,9 @@ root      46945  0.0  0.0 112708   984 pts/1    S+   13:56   0:00 grep --color=a
 tcp6       0      0 :::10251                :::*                    LISTEN      46894/kube-schedule 
 tcp6       0      0 :::10259                :::*                    LISTEN      46894/kube-schedule 
 ```
+
 4. 拷贝配置及启动文件至其他master上, 并且启动
+
 ```
 [root@master01 kubernetes]# scp -rp kube-scheduler root@master02:/etc/kubernetes/ 
 [root@master01 kubernetes]# scp -rp kube-scheduler root@master03:/etc/kubernetes/  
@@ -419,6 +424,7 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/kube-scheduler.
 ### 部署kube-controller-manager组件
 
 1. 创建kube-controller-manager配置
+
 ```
 [root@master01 kubernetes]# more /etc/kubernetes/kube-controller-manager 
 KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=true \
@@ -435,6 +441,7 @@ KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=true \
 ```
 
 2. 创建kube-controller-manager启动文件
+
 ```
 [root@master01 kubernetes]# more /usr/lib/systemd/system/kube-controller-manager.service 
 [Unit]
@@ -451,6 +458,7 @@ WantedBy=multi-user.target
 ```
 
 3. 启动服务
+
 ```
 [root@master01 kubernetes]# systemctl daemon-reload
 [root@master01 kubernetes]# systemctl enable kube-controller-manager
@@ -486,6 +494,7 @@ tcp6       0      0 :::10257                :::*                    LISTEN      
 ```
 
 4. 拷贝配置及启动文件至其他master上, 并且启动
+
 ```
 [root@master01 kubernetes]# scp -rp kube-controller-manager root@master02:/etc/kubernetes/ 
 [root@master01 kubernetes]# scp -rp kube-controller-manager root@master03:/etc/kubernetes/

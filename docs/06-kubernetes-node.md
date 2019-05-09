@@ -11,7 +11,10 @@
 将kube-bootstrap用户绑定到系统集群角色, master上操作(只需要执行这一次)
 ```
 [root@master01 kubernetes]# kubectl create clusterrolebinding kubelet-bootstrap --clusterrole=system:node-bootstrapper --user=kubelet-bootstrap
-clusterrolebinding.rbac.authorization.k8s.io/kubelet-bootstrap created
+
+如果需要权限最大需要执行：
+[root@master01 kubernetes]# kubectl create clusterrolebinding kubelet-bootstrap --clusterrole=cluster-admin --user=kubelet-bootstrap
+
 
 [root@master01 kubernetes]# kubectl create clusterrolebinding system:anonymous --clusterrole=cluster-admin --user=system:anonymous
 ```

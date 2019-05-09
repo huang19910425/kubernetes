@@ -39,12 +39,12 @@ ip地址|配置|主机名|服务
 
 ## 版本信息
 
-系统版本 Centos7.6
-Kubernetes: v1.13
-Etcd: v3.3.12
-Flanneld: v0.11.0
-Docker: 18.09-ce
-Harbor: v1.7.0
+* 系统版本 Centos7.6
+* Kubernetes: v1.13
+* Etcd: v3.3.12
+* Flanneld: v0.11.0
+* Docker: 18.09-ce
+* Harbor: v1.7.0
 
 初始化项主要有主机名修改，关闭SELinux及防火墙，limits设置，hosts配置， 服务器时区修改，主机历史命令配置
 
